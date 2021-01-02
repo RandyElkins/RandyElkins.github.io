@@ -1,0 +1,100 @@
+:root {
+    --gradBackground: #2C3E50;
+    /* fallback for old browsers */
+    --gradBackground: -webkit-linear-gradient(to bottom, #4CA1AF, #2C3E50);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --gradBackground: linear-gradient(to bottom, #4CA1AF, #2C3E50);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+    background: var(--gradBackground);
+    font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    font-size: 500%;
+}
+
+h2 {
+    font-size: 300%;
+    margin: 0 auto;
+}
+
+h1,
+h2 {
+    background: #757F9A;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #D7DDE8, #757F9A);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: 'Saira Stencil One', cursive;
+    text-transform: uppercase;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ships {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 48%;
+    height: 48%;
+    background: var(--gradBackground);
+}
+
+.board {
+    width: 100%;
+    /* display: grid;
+    grid-template: repeat(11, 50px) / repeat(11, 1fr);
+    grid-gap: 3px; */
+}
+
+.title {
+    grid-column: auto;
+}
+
+table {
+    width: 100%;
+}
+
+td,
+th {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: white;
+}
+
+td {
+    cursor: pointer;
+}
+
+th:not(.empty) {
+    background-color: gray;
+}
+
+
+/* tr:hover {
+    background-color: #ddd;
+} */
+
+.cell:hover {
+    background-color: red;
+}
+
+.empty {
+    border: none;
+}
