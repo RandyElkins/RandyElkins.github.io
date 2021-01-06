@@ -4,189 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- NOTE CSS -->
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
-
-    <!-- NOTE JQUERY js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-    <!-- NOTE Main JS -->
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-
-    <title>Battleship123456789</title>
+    <title>Battleship</title>
 </head>
 
 <body>
-    <header>
-        <h1>Battleship</h1>
-        <!-- <h2>The Classic Naval Combat Game</h2> -->
-    </header>
+    <div class="container">
+        <div class="grid grid-user"></div>
+        <div class="grid grid-computer"></div>
+    </div>
 
-    <main>
-        <div class="ships yourBoats">
-            <h2 class="title">Your Boat Positions</h2>
-            <div class="board yourBoard">
-                <table>
-                    <tr>
-                        <th class="empty"></th>
-                        <th class="numbers">1</th>
-                        <th class="numbers">2</th>
-                        <th class="numbers">3</th>
-                        <th class="numbers">4</th>
-                        <th class="numbers">5</th>
-                        <th class="numbers">6</th>
-                        <th class="numbers">7</th>
-                        <th class="numbers">8</th>
-                        <th class="numbers">9</th>
-                        <th class="numbers">10</th>
-                    </tr>
-                    <tr>
-                        <th class="letters">A</th>
-                        <td class="cell rowA col01">A1</td>
-                        <td class="cell rowA col02">A2</td>
-                        <td class="cell rowA col03">A3</td>
-                        <td class="cell rowA col04">A4</td>
-                        <td class="cell rowA col05">A5</td>
-                        <td class="cell rowA col06">A6</td>
-                        <td class="cell rowA col07">A7</td>
-                        <td class="cell rowA col08">A8</td>
-                        <td class="cell rowA col09">A9</td>
-                        <td class="cell rowA col10">A10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">B</th>
-                        <td class="cell rowB col01">B1</td>
-                        <td class="cell rowB col02">B2</td>
-                        <td class="cell rowB col03">B3</td>
-                        <td class="cell rowB col04">B4</td>
-                        <td class="cell rowB col05">B5</td>
-                        <td class="cell rowB col06">B6</td>
-                        <td class="cell rowB col07">B7</td>
-                        <td class="cell rowB col08">B8</td>
-                        <td class="cell rowB col09">B9</td>
-                        <td class="cell rowB col10">B10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">C</th>
-                        <td class="cell rowC col01">C1</td>
-                        <td class="cell rowC col02">C2</td>
-                        <td class="cell rowC col03">C3</td>
-                        <td class="cell rowC col04">C4</td>
-                        <td class="cell rowC col05">C5</td>
-                        <td class="cell rowC col06">C6</td>
-                        <td class="cell rowC col07">C7</td>
-                        <td class="cell rowC col08">C8</td>
-                        <td class="cell rowC col09">C9</td>
-                        <td class="cell rowC col10">C10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">D</th>
-                        <td class="cell rowD col01">D1</td>
-                        <td class="cell rowD col02">D2</td>
-                        <td class="cell rowD col03">D3</td>
-                        <td class="cell rowD col04">D4</td>
-                        <td class="cell rowD col05">D5</td>
-                        <td class="cell rowD col06">D6</td>
-                        <td class="cell rowD col07">D7</td>
-                        <td class="cell rowD col08">D8</td>
-                        <td class="cell rowD col09">D9</td>
-                        <td class="cell rowD col10">D10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">E</th>
-                        <td class="cell rowE col01">E1</td>
-                        <td class="cell rowE col02">E2</td>
-                        <td class="cell rowE col03">E3</td>
-                        <td class="cell rowE col04">E4</td>
-                        <td class="cell rowE col05">E5</td>
-                        <td class="cell rowE col06">E6</td>
-                        <td class="cell rowE col07">E7</td>
-                        <td class="cell rowE col08">E8</td>
-                        <td class="cell rowE col09">E9</td>
-                        <td class="cell rowE col10">E10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">F</th>
-                        <td class="cell rowF col01">F1</td>
-                        <td class="cell rowF col02">F2</td>
-                        <td class="cell rowF col03">F3</td>
-                        <td class="cell rowF col04">F4</td>
-                        <td class="cell rowF col05">F5</td>
-                        <td class="cell rowF col06">F6</td>
-                        <td class="cell rowF col07">F7</td>
-                        <td class="cell rowF col08">F8</td>
-                        <td class="cell rowF col09">F9</td>
-                        <td class="cell rowF col10">F10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">G</th>
-                        <td class="cell rowG col01">G1</td>
-                        <td class="cell rowG col02">G2</td>
-                        <td class="cell rowG col03">G3</td>
-                        <td class="cell rowG col04">G4</td>
-                        <td class="cell rowG col05">G5</td>
-                        <td class="cell rowG col06">G6</td>
-                        <td class="cell rowG col07">G7</td>
-                        <td class="cell rowG col08">G8</td>
-                        <td class="cell rowG col09">G9</td>
-                        <td class="cell rowG col10">G10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">H</th>
-                        <td class="cell rowH col01">H1</td>
-                        <td class="cell rowH col02">H2</td>
-                        <td class="cell rowH col03">H3</td>
-                        <td class="cell rowH col04">H4</td>
-                        <td class="cell rowH col05">H5</td>
-                        <td class="cell rowH col06">H6</td>
-                        <td class="cell rowH col07">H7</td>
-                        <td class="cell rowH col08">H8</td>
-                        <td class="cell rowH col09">H9</td>
-                        <td class="cell rowH col10">H10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">I</th>
-                        <td class="cell rowI col01">I1</td>
-                        <td class="cell rowI col02">I2</td>
-                        <td class="cell rowI col03">I3</td>
-                        <td class="cell rowI col04">I4</td>
-                        <td class="cell rowI col05">I5</td>
-                        <td class="cell rowI col06">I6</td>
-                        <td class="cell rowI col07">I7</td>
-                        <td class="cell rowI col08">I8</td>
-                        <td class="cell rowI col09">I9</td>
-                        <td class="cell rowI col10">I10</td>
-                    </tr>
-                    <tr>
-                        <th class="letters">J</th>
-                        <td class="cell rowJ col01">J1</td>
-                        <td class="cell rowJ col02">J2</td>
-                        <td class="cell rowJ col03">J3</td>
-                        <td class="cell rowJ col04">J4</td>
-                        <td class="cell rowJ col05">J5</td>
-                        <td class="cell rowJ col06">J6</td>
-                        <td class="cell rowJ col07">J7</td>
-                        <td class="cell rowJ col08">J8</td>
-                        <td class="cell rowJ col09">J9</td>
-                        <td class="cell rowJ col10">J10</td>
-                    </tr>
-                </table>
+    <div class="hidden-info">
+        <button id="start">Start Game</button>
+        <button id="rotate">Rotate Your Ships</button>
+        <h3 id="whose-go"></h3>
+        <h3 id="info"></h3>
+    </div>
+
+    <div class="grid-display">
+        <div class="ship-container">
+            <div class="ship destroyer-container" draggable="true">
+                <div id="destroyer-0"></div>
+                <div id="destroyer-1"></div>
             </div>
+            <p>Destroyer</p>
         </div>
-        </div>
-
-        <div class="ships computerBoats">
-            <h2 class="title">Places You've Shot</h2>
-            <div class="board computersBoard">
-
+        <div class="ship-container">
+            <div class="ship submarine-container" draggable="true">
+                <div id="submarine-0"></div>
+                <div id="submarine-1"></div>
+                <div id="submarine-2"></div>
             </div>
+            <p>Submarine</p>
         </div>
-
-    </main>
-
+        <div class="ship-container">
+            <div class="ship cruiser-container" draggable="true">
+                <div id="cruiser-0"></div>
+                <div id="cruiser-1"></div>
+                <div id="cruiser-2"></div>
+            </div>
+            <p>Cruiser</p>
+        </div>
+        <div class="ship-container">
+            <div class="ship battleship-container" draggable="true">
+                <div id="battleship-0"></div>
+                <div id="battleship-1"></div>
+                <div id="battleship-2"></div>
+                <div id="battleship-3"></div>
+            </div>
+            <p>Battleship</p>
+        </div>
+        <div class="ship-container">
+            <div class="ship carrier-container" draggable="true">
+                <div id="carrier-0"></div>
+                <div id="carrier-1"></div>
+                <div id="carrier-2"></div>
+                <div id="carrier-3"></div>
+                <div id="carrier-4"></div>
+            </div>
+            <p>Aircraft Carrier</p>
+        </div>
+    </div>
 </body>
 
 </html>
