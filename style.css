@@ -13,8 +13,11 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     background: var(--gradBackground);
-    font-family: 'Saira Stencil One', cursive;
+    font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
 }
 
@@ -24,24 +27,19 @@ header {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 10vw;
+    height: 7vh;
     max-height: ;
     background: var(--gradBackground);
     font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h1 {
-    font-size: 7vmax;
+    font-size: 7vmin;
     /* font-size: 5vmin; */
     /* width: auto;
     height: auto; */
     /* align-self: center; */
     text-align: center;
-}
-
-span {
-    color: white;
-    text-decoration: underline;
 }
 
 h2 {
@@ -50,10 +48,9 @@ h2 {
 }
 
 h3 {
-    font-size: 2em;
+    /* font-size: 2em; */
     margin: 0 auto;
-    /* width: 50%; */
-    align-self: center;
+    width: 90vw;
 }
 
 h1,
@@ -68,17 +65,22 @@ h3 {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-background-clip: text;
     color: transparent;
-    font-family: 'Saira Stencil One', cursive;
+    font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
 }
 
-* {
-    box-sizing: border-box;
+span {
+    color: white;
+    text-decoration: underline;
 }
+
+
+/* <<<<<<<<<< CLASSES (ALPHABETICALLY) >>>>>>>>>>*/
 
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
@@ -86,20 +88,12 @@ h3 {
     width: 100%;
 }
 
-
-/* #fleetNames {
-    width: 46vw;
-    display: flex;
-    justify-content: center;
-} */
-
-.hidden-info {
-    flex-direction: column;
-    align-items: center;
+.fleetTitle {
+    text-align: center;
 }
 
 .grid {
-    margin: 2vmin;
+    margin: 0 2vmin 2vmin 2vmin;
     display: grid;
     background: var(--gradBackground);
     /* background-color: rgba(50, 164, 168, 1); */
@@ -115,35 +109,23 @@ h3 {
     background-color: rgba(255, 0, 0, .5);
 }
 
-.taken,
-.ship {
-    background-color: rgba(150, 150, 150, 1);
-}
-
-
-/* .grid-user {
-    width: 400px;
-    height: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-}
-
-.grid-computer {
-    width: 400px;
-    height: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-} */
-
 .grid-display,
 .grid-display-vertical {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100%;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
+}
+
+.hidden-info {
+    flex-direction: column;
+    align-items: center;
+}
+
+.ship,
+.taken {
+    background-color: rgba(150, 150, 150, 1);
 }
 
 .ship>div {
@@ -164,6 +146,9 @@ h3 {
 .ship-vertical {
     border-radius: 5.3vmin 5.3vmin 1vmin 1vmin;
 }
+
+
+/* <<<<<<<<<<<<<<< SHIPS >>>>>>>>>>>>>>>*/
 
 .destroyer-container {
     --width: 2;
@@ -254,6 +239,7 @@ h3 {
     background: var(--gradBackground);
     height: 40px;
     font-size: 1.5em;
+    border-radius: 10px;
 }
 
 #rotate,
