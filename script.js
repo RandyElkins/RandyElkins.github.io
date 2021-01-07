@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const turnDisplay = document.querySelector('#whose-go');
     const infoDisplay = document.querySelector('#info');
 
+    // Set variables for horizontal/vertical ships, if the game's over, and current player (always start with the user)
     let isHorizontal = true;
-
     let isGameOver = false;
     let currentPlayer = 'user';
 
@@ -105,10 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function rotate() {
         shipGridDisplay.classList.toggle('grid-display-vertical');
         destroyer.classList.toggle('destroyer-container-vertical');
+        destroyer.classList.toggle('ship-vertical');
         submarine.classList.toggle('submarine-container-vertical');
+        submarine.classList.toggle('ship-vertical');
         cruiser.classList.toggle('cruiser-container-vertical');
+        cruiser.classList.toggle('ship-vertical');
         battleship.classList.toggle('battleship-container-vertical');
+        battleship.classList.toggle('ship-vertical');
         carrier.classList.toggle('carrier-container-vertical');
+        carrier.classList.toggle('ship-vertical');
 
         isHorizontal ? isHorizontal = false : isHorizontal = true;
     }
@@ -232,12 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isHorizontal && (min1stDigit === max1stDigit || droppedShipMinIndex < 10 && droppedShipMaxIndex < 10) && !overlap) {
             for (let i = 0; i < draggedShipLength; i++) {
-                userSquares[parseInt(this.dataset.id) - selectedShipGrabbedIndex + i].classList.add('taken', shipClass);
+                let directionClass;
+                if (i === 0) directionClass = 'start';
+                if (i === draggedShipLength - 1) directionClass = 'end';
+                userSquares[parseInt(this.dataset.id) - selectedShipGrabbedIndex + i].classList.add('taken', 'horizontal', directionClass, shipClass);
             }
         } else if (!isHorizontal && droppedShipMaxIndex < width ** 2 && !overlap) {
-            // } else if (!isHorizontal && !newNotAllowedVertical.includes(shipLastId)) {
             for (let i = 0; i < draggedShipLength; i++) {
-                userSquares[parseInt(this.dataset.id) - selectedShipGrabbedIndex + width * i].classList.add('taken', shipClass);
+                let directionClass;
+                if (i === 0) directionClass = 'start';
+                if (i === draggedShipLength - 1) directionClass = 'end';
+                userSquares[parseInt(this.dataset.id) - selectedShipGrabbedIndex + width * i].classList.add('taken', 'vertical', directionClass, shipClass);
             }
         } else return;
 
@@ -262,10 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (currentPlayer === 'computer') {
             turnDisplay.innerHTML = `Alien's Turn`;
-            setTimeout(aliensTurn(), 1000);
+            // setTimeout(aliensTurn(), 1000);
+            aliensTurn();
         }
     }
 
+    function clearInfoDisplay() {
+        infoDisplay.innerHTML = '';
+    }
+
+    startButton.addEventListener('mousedown', clearInfoDisplay);
     startButton.addEventListener('click', playGame);
 
     let destroyerCount = 0;
@@ -301,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cpuCarrierCount = 0;
 
     function aliensTurn() {
+        setTimeout(1, 1000);
         // Pick a random box for the aliens to shoot
         let random = Math.floor(Math.random() * userSquares.length);
         console.log(random);
@@ -346,30 +363,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (cpuDestroyerCount === 2) {
             infoDisplay.innerHTML = "The alien's sunk your destroyer.";
-            destroyerCount = 10;
+            cpuDestroyerCount = 10;
         }
         if (cpuSubmarineCount === 3) {
             infoDisplay.innerHTML = "The alien's sunk your submarine.";
-            submarineCount = 10;
+            cpuSubmarineCount = 10;
         }
         if (cpuCruiserCount === 3) {
             infoDisplay.innerHTML = "The alien's sunk your cruiser.";
-            cruiserCount = 10;
+            cpuCruiserCount = 10;
         }
         if (cpuBattleshipCount === 4) {
             infoDisplay.innerHTML = "The alien's sunk your battleship.";
-            battleshipCount = 10;
+            cpuBattleshipCount = 10;
         }
         if (cpuCarrierCount === 5) {
             infoDisplay.innerHTML = "The alien's sunk your carrier.";
-            carrierCount = 10;
+            cpuCarrierCount = 10;
         }
         if (destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount === 50) {
-            infoDisplay.innerHTML = 'YOU WIN!';
+            infoDisplay.innerHTML = 'CONGRATULATIONS, YOU WON!';
             gameOver();
         }
         if (cpuDestroyerCount + cpuSubmarineCount + cpuCruiserCount + cpuBattleshipCount + cpuCarrierCount === 50) {
-            infoDisplay.innerHTML = 'ALIENS WIN!';
+            infoDisplay.innerHTML = 'Bummer, the aliens won!';
             gameOver();
         }
     }

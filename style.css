@@ -1,17 +1,131 @@
+:root {
+    --gradBackground: #2C3E50;
+    /* fallback for old browsers */
+    --gradBackground: -webkit-linear-gradient(to bottom, #4CA1AF, #2C3E50);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --gradBackground: linear-gradient(to bottom, #4CA1AF, #2C3E50);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    --textBackground: #757F9A;
+    /* fallback for old browsers */
+    --textBackground: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --textBackground: linear-gradient(to bottom, #D7DDE8, #757F9A);
+}
+
+body {
+    background: var(--gradBackground);
+    font-family: 'Saira Stencil One', cursive;
+    text-transform: uppercase;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 10vw;
+    max-height: ;
+    background: var(--gradBackground);
+    font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+    font-size: 7vmax;
+    /* font-size: 5vmin; */
+    /* width: auto;
+    height: auto; */
+    /* align-self: center; */
+    text-align: center;
+}
+
+span {
+    color: white;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 3em;
+    margin: 0 auto;
+}
+
+h3 {
+    font-size: 2em;
+    margin: 0 auto;
+    /* width: 50%; */
+    align-self: center;
+}
+
+h1,
+h2,
+h3 {
+    background: var(--textBackground);
+    /* background: #757F9A; */
+    /* fallback for old browsers */
+    /* background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A); */
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: linear-gradient(to bottom, #D7DDE8, #757F9A); */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: 'Saira Stencil One', cursive;
+    text-transform: uppercase;
+}
+
 * {
     box-sizing: border-box;
 }
 
 .container {
     display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-.grid-user {
+.container ol {
+    width: 100%;
+}
+
+
+/* #fleetNames {
+    width: 46vw;
+    display: flex;
+    justify-content: center;
+} */
+
+.hidden-info {
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid {
+    margin: 2vmin;
+    display: grid;
+    background: var(--gradBackground);
+    /* background-color: rgba(50, 164, 168, 1); */
+    grid-template-rows: repeat(10, 4.6vmin);
+    grid-template-columns: repeat(10, 4.6vmin);
+}
+
+.grid div {
+    border: 1px dashed rgba(255, 255, 255, .5);
+}
+
+.grid div:hover {
+    background-color: rgba(255, 0, 0, .5);
+}
+
+.taken,
+.ship {
+    background-color: rgba(150, 150, 150, 1);
+}
+
+
+/* .grid-user {
     width: 400px;
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: blue;
     margin: 20px;
 }
 
@@ -20,132 +134,81 @@
     height: 400px;
     display: flex;
     flex-wrap: wrap;
-    background-color: lightgreen;
     margin: 20px;
-}
+} */
 
-.grid-display {
-    width: 400px;
-    height: 400px;
-    background-color: yellow;
-    margin: 20px;
-}
-
+.grid-display,
 .grid-display-vertical {
     display: flex;
-    width: 400px;
-    height: 400px;
-    background-color: yellow;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     margin: 20px;
 }
 
-.grid div {
-    width: 40px;
-    height: 40px;
-    border: 1px solid gray;
-}
-
-.grid div:hover {
-    background-color: rgba(255, 0, 0, .5);
-}
-
-.destroyer-container {
-    width: calc(2*40px);
-    height: 40px;
-    background-color: orange;
-    margin: 10px;
-    display: flex;
-}
-
-.destroyer-container-vertical {
-    width: 40px;
-    height: calc(2*40px);
-    background-color: orange;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.submarine-container {
-    width: calc(3*40px);
-    height: 40px;
-    background-color: pink;
-    margin: 10px;
-    display: flex;
-}
-
-.submarine-container-vertical {
-    width: 40px;
-    height: calc(3*40px);
-    background-color: pink;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.cruiser-container {
-    width: calc(3*40px);
-    height: 40px;
-    background-color: purple;
-    margin: 10px;
-    display: flex;
-}
-
-.cruiser-container-vertical {
-    width: 40px;
-    height: calc(3*40px);
-    background-color: purple;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.battleship-container {
-    width: calc(4*40px);
-    height: 40px;
-    background-color: aqua;
-    margin: 10px;
-    display: flex;
-}
-
-.battleship-container-vertical {
-    width: 40px;
-    height: calc(4*40px);
-    background-color: aqua;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.carrier-container {
-    width: calc(5*40px);
-    height: 40px;
-    background-color: green;
-    margin: 10px;
-    display: flex;
-}
-
-.carrier-container-vertical {
-    width: 40px;
-    height: calc(5*40px);
-    background-color: green;
-    margin: 10px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.ship div {
-    width: 40px;
-    height: 40px;
-    border: 1px solid gray;
+.ship>div {
+    width: 4.6vmin;
+    height: 4.6vmin;
 }
 
 .ship {
-    border-radius: 40px 20px 20px 40px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1vmin;
+    width: calc(4.6vmin * var(--width, 1));
+    height: calc(4.6vmin * var(--height, 1));
+    border-radius: 5.3vmin 1vmin 1vmin 5.3vmin;
+}
+
+.ship-vertical {
+    border-radius: 5.3vmin 5.3vmin 1vmin 1vmin;
+}
+
+.destroyer-container {
+    --width: 2;
 }
 
 .destroyer-container-vertical {
-    border-radius: 40px 40px 20px 20px;
+    --height: 2;
+    --width: 1;
+    /* Need this to override the horizontal width */
+}
+
+.submarine-container,
+.cruiser-container {
+    --width: 3;
+}
+
+.submarine-container-vertical,
+.cruiser-container-vertical {
+    --height: 3;
+    --width: 1;
+    /* Need this to override the horizontal width */
+}
+
+.battleship-container {
+    --width: 4;
+}
+
+.battleship-container-vertical {
+    --height: 4;
+    --width: 1;
+    /* Need this to override the horizontal width */
+}
+
+.carrier-container {
+    --width: 5;
+}
+
+.carrier-container-vertical {
+    --height: 5;
+    --width: 1;
+    /* Need this to override the horizontal width */
+}
+
+.destroyer-container-vertical {
+    /* border-radius: 40px 40px 20px 20px; */
 }
 
 
@@ -155,45 +218,66 @@
 
 .ship-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* border-radius: 40px 10px 10px 40px; */
-}
-
-.ship-container-vertical {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid black;
     /* border-radius: 40px 10px 10px 40px; */
 }
 
 .ship-container p {
     margin: 10px;
+    color: white;
+    /* position: relative; */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
 }
 
-.destroyer {
-    background-color: orange;
+.start {
+    border-radius: 5.3vmin 0vmin 0vmin 5.3vmin;
 }
 
-.submarine {
-    background-color: pink;
+.start.vertical {
+    border-radius: 5.3vmin 5.3vmin 0vmin 0vmin;
 }
 
-.cruiser {
-    background-color: purple;
+.end {
+    border-radius: 0vmin 1vmin 1vmin 0vmin;
 }
 
-.battleship {
-    background-color: aqua;
+.end.vertical {
+    border-radius: 0vmin 0vmin 1vmin 1vmin;
 }
 
-.carrier {
-    background-color: green;
+.btn-water {
+    background: var(--gradBackground);
+    height: 40px;
+    font-size: 1.5em;
+}
+
+#rotate,
+#start {
+    color: rgba(255, 255, 255, .9);
+}
+
+.grid-computer>.taken {
+    background-color: rgba(150, 150, 150, 0);
+}
+
+.grid-computer>.hit {
+    background-color: red;
+    z-index: 2;
 }
 
 .hit {
     background-color: red;
+    z-index: 2;
+}
+
+.sunk {
+    background-color: black;
+    z-index: 2;
 }
 
 .miss {
