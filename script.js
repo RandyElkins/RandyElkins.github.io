@@ -1,5 +1,3 @@
-// Set this to run immediately upon loading
-// document.addEventListener('DOMContentLoaded', () => {
 // Select the various grids
 const userGrid = document.querySelector('.grid-user');
 const computerGrid = document.querySelector('.grid-computer');
@@ -105,15 +103,15 @@ for (let i = 0; i < shipArray.length; i++) {
 function rotate() {
     shipGridDisplay.classList.toggle('grid-display-vertical');
     destroyer.classList.toggle('destroyer-container-vertical');
-    destroyer.classList.toggle('ship-vertical');
+    destroyer.classList.toggle('vertical');
     submarine.classList.toggle('submarine-container-vertical');
-    submarine.classList.toggle('ship-vertical');
+    submarine.classList.toggle('vertical');
     cruiser.classList.toggle('cruiser-container-vertical');
-    cruiser.classList.toggle('ship-vertical');
+    cruiser.classList.toggle('vertical');
     battleship.classList.toggle('battleship-container-vertical');
-    battleship.classList.toggle('ship-vertical');
+    battleship.classList.toggle('vertical');
     carrier.classList.toggle('carrier-container-vertical');
-    carrier.classList.toggle('ship-vertical');
+    carrier.classList.toggle('vertical');
 
     isHorizontal ? isHorizontal = false : isHorizontal = true;
 }
@@ -139,12 +137,10 @@ let droppedShipMinIndex;
 let droppedShipMaxIndex;
 
 ships.forEach(ship => ship.addEventListener('mousedown', (e) => {
-    console.log('<<<<<<<<<<mousedown this>>>>>>>>>>');
+    // console.log('<<<<<<<<<<mousedown this>>>>>>>>>>');
 
     selectedShipNameWithIndex = e.target.id;
     selectedShipGrabbedIndex = parseInt(selectedShipNameWithIndex.substr(-1));
-    console.log('selectedShipGrabbedIndex');
-    console.log(selectedShipGrabbedIndex);
 
     selectedShipLastIndex = parseInt(e.target.parentNode.lastChild.previousSibling.id.substr(-1));
     // selectedShipLastIndex = parseInt(e.target.parentNode.lastChild.previousSibling.dataset.id).substr(-1);
@@ -165,7 +161,7 @@ function dragOver(e) {
     // ********** IMPORTANT!!! **********
     // You NEED this next line, or else the drag/drop won't work
     e.preventDefault();
-    // console.log('dragOver');
+    // console.log('<<<<<<<<<<dragOver this>>>>>>>>>>');
     // this.innerText = 'i was here';
 }
 
@@ -207,8 +203,6 @@ function dragDrop() {
     // See if the dragged ship overlaps any already placed ship
     let overlap = false;
     for (let i = 0; i < droppedShipMiddleIndices.length; i++) {
-        console.log('userGrid.children[droppedShipMiddleIndices[i]].classList');
-        console.log(userGrid.children[droppedShipMiddleIndices[i]].classList);
         if (userGrid.children[droppedShipMiddleIndices[i]].classList.contains('taken')) {
             overlap = true;
         }
@@ -226,14 +220,7 @@ function dragDrop() {
     let shipLastId = lastShipIndex + parseInt(this.dataset.id);
 
     selectedShipIndex = parseInt(selectedShipNameWithIndex.substr(-1));
-    console.log('selectedShipIndex');
-    console.log(selectedShipIndex);
     shipLastId = shipLastId - selectedShipIndex;
-    console.log('shipLastId');
-    console.log(shipLastId);
-
-    console.log('isHorizontal');
-    console.log(isHorizontal);
 
     if (isHorizontal && (min1stDigit === max1stDigit || droppedShipMinIndex < 10 && droppedShipMaxIndex < 10) && !overlap) {
         for (let i = 0; i < draggedShipLength; i++) {
@@ -256,8 +243,8 @@ function dragDrop() {
 }
 
 function dragEnd() {
-    console.log('dragEnd');
-    console.log(this);
+    // console.log('<<<<<<<<<<dragEnd this>>>>>>>>>>');
+    // console.log(this);
 }
 
 
@@ -277,7 +264,25 @@ function playGame() {
     }
 }
 
+// checkForStart = function() {
+
+//     infoDisplay.innerHTML = '';
+//     startButton.style.display = 'none';
+//     rotateButton.style.display = 'none';
+//     playGame();
+// }
+
 startButton.addEventListener('click', () => {
+    let takenCount = 0;
+    userSquares.forEach(square => {
+        if (square.classList.contains('taken')) {
+            takenCount++;
+        }
+    });
+    if (takenCount < 2 + 3 + 3 + 4 + 5) {
+        alert('Please position your entire fleet before starting the operation.')
+        return;
+    }
     infoDisplay.innerHTML = '';
     startButton.style.display = 'none';
     rotateButton.style.display = 'none';
@@ -291,6 +296,11 @@ let battleshipCount = 0;
 let carrierCount = 0;
 
 function revealSquare(square) {
+    // Set it such that the player canNOT pick a square they've already picked
+    if (square.classList.contains('hit') || square.classList.contains('miss')) {
+        alert("You've already shot at this coordinate location. Please pick another coordinate.");
+        return;
+    }
     if (!square.classList.contains('hit')) {
         if (square.classList.contains('destroyer')) destroyerCount++;
         if (square.classList.contains('submarine')) submarineCount++;
@@ -318,7 +328,6 @@ function aliensTurn() {
     setTimeout(1, 1000);
     // Pick a random box for the aliens to shoot
     let random = Math.floor(Math.random() * userSquares.length);
-    console.log(random);
 
     // If the aliens have already shot at this location, pick another spot
     if (!userSquares[random].classList.contains('shot')) {
@@ -393,4 +402,3 @@ function gameOver() {
     isGameOver = true;
     startButton.removeEventListener('click', playGame);
 }
-// })

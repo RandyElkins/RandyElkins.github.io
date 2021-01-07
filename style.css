@@ -5,11 +5,36 @@
     /* Chrome 10-25, Safari 5.1-6 */
     --gradBackground: linear-gradient(to bottom, #4CA1AF, #2C3E50);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    --textBackground: #757F9A;
+    --shipBackground: #757F9A;
     /* fallback for old browsers */
-    --textBackground: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
+    --shipBackground: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A);
     /* Chrome 10-25, Safari 5.1-6 */
-    --textBackground: linear-gradient(to bottom, #D7DDE8, #757F9A);
+    --shipBackground: linear-gradient(to bottom, #D7DDE8, #757F9A);
+    --shipVertBackground: #757F9A;
+    /* fallback for old browsers */
+    --shipVertBackground: -webkit-linear-gradient(to left, #D7DDE8, #757F9A);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --shipVertBackground: linear-gradient(to left, #D7DDE8, #757F9A);
+    --playerBackground: green;
+    /* fallback for old browsers */
+    --playerBackground: -webkit-linear-gradient(to bottom, green, black);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --playerBackground: linear-gradient(to bottom, green, black);
+    --alienBackground: red;
+    /* fallback for old browsers */
+    --alienBackground: -webkit-linear-gradient(to bottom, red, black);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --alienBackground: linear-gradient(to bottom, red, black);
+    --hitBackground: red;
+    /* fallback for old browsers */
+    --hitBackground: -webkit-linear-gradient(to bottom, white, red);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --hitBackground: linear-gradient(to bottom, white, red);
+    --hitVertBackground: red;
+    /* fallback for old browsers */
+    --hitVertBackground: -webkit-linear-gradient(to left, white, red);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --hitVertBackground: linear-gradient(to left, white, red);
 }
 
 body {
@@ -43,8 +68,8 @@ h1 {
 }
 
 h2 {
-    font-size: 3em;
-    margin: 0 auto;
+    font-size: 4vmin;
+    margin: 2vmin;
 }
 
 h3 {
@@ -56,13 +81,7 @@ h3 {
 h1,
 h2,
 h3 {
-    background: var(--textBackground);
-    /* background: #757F9A; */
-    /* fallback for old browsers */
-    /* background: -webkit-linear-gradient(to bottom, #D7DDE8, #757F9A); */
-    /* Chrome 10-25, Safari 5.1-6 */
-    /* background: linear-gradient(to bottom, #D7DDE8, #757F9A); */
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: var(--shipBackground);
     -webkit-background-clip: text;
     color: transparent;
     font-family: 'Saira Stencil One', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -75,7 +94,20 @@ span {
 }
 
 
-/* <<<<<<<<<< CLASSES (ALPHABETICALLY) >>>>>>>>>>*/
+/* <<<<<<<<<< CLASSES (ALPHABETIC-ish) >>>>>>>>>>*/
+
+.alien {
+    background: var(--alienBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.btn-water {
+    background: var(--gradBackground);
+    height: 40px;
+    font-size: 1.5em;
+    border-radius: 10px;
+}
 
 .container {
     display: flex;
@@ -88,15 +120,23 @@ span {
     width: 100%;
 }
 
+.end {
+    border-radius: 0vmin 1vmin 1vmin 0vmin;
+}
+
+.end.vertical {
+    border-radius: 0vmin 0vmin 1vmin 1vmin;
+}
+
 .fleetTitle {
     text-align: center;
+    width: 46vmin;
 }
 
 .grid {
     margin: 0 2vmin 2vmin 2vmin;
     display: grid;
     background: var(--gradBackground);
-    /* background-color: rgba(50, 164, 168, 1); */
     grid-template-rows: repeat(10, 4.6vmin);
     grid-template-columns: repeat(10, 4.6vmin);
 }
@@ -118,14 +158,28 @@ span {
     margin: 0 20px 20px 20px;
 }
 
+.grid-computer>.taken {
+    background-color: rgba(150, 150, 150, 0);
+}
+
+.grid-computer>.hit {
+    background-color: red;
+    z-index: 2;
+}
+
 .hidden-info {
     flex-direction: column;
     align-items: center;
 }
 
-.ship,
-.taken {
-    background-color: rgba(150, 150, 150, 1);
+.player {
+    background: var(--playerBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.ship {
+    background: var(--shipBackground);
 }
 
 .ship>div {
@@ -145,6 +199,27 @@ span {
 
 .ship-vertical {
     border-radius: 5.3vmin 5.3vmin 1vmin 1vmin;
+}
+
+.taken {
+    background-color: #757F9A;
+    /* background-color: rgba(150, 150, 150, 1); */
+}
+
+.horizontal {
+    background: var(--shipBackground);
+}
+
+.horizontal.hit {
+    background: var(--hitBackground);
+}
+
+.vertical {
+    background: var(--shipVertBackground);
+}
+
+.vertical.hit {
+    background: var(--hitVertBackground);
 }
 
 
@@ -192,15 +267,6 @@ span {
     /* Need this to override the horizontal width */
 }
 
-.destroyer-container-vertical {
-    /* border-radius: 40px 40px 20px 20px; */
-}
-
-
-/* .ship div:last-child {
-    border-radius: 0 10px 10px 0;
-} */
-
 .ship-container {
     display: flex;
     flex-direction: column;
@@ -219,6 +285,10 @@ span {
     /* transform: translate(-50%, -50%); */
 }
 
+.ship-container .vertical {
+    border-radius: 5.3vmin 5.3vmin 1vmin 1vmin;
+}
+
 .start {
     border-radius: 5.3vmin 0vmin 0vmin 5.3vmin;
 }
@@ -227,38 +297,13 @@ span {
     border-radius: 5.3vmin 5.3vmin 0vmin 0vmin;
 }
 
-.end {
-    border-radius: 0vmin 1vmin 1vmin 0vmin;
-}
-
-.end.vertical {
-    border-radius: 0vmin 0vmin 1vmin 1vmin;
-}
-
-.btn-water {
-    background: var(--gradBackground);
-    height: 40px;
-    font-size: 1.5em;
-    border-radius: 10px;
-}
-
-#rotate,
-#start {
-    color: rgba(255, 255, 255, .9);
-}
-
-.grid-computer>.taken {
-    background-color: rgba(150, 150, 150, 0);
-}
-
-.grid-computer>.hit {
-    background-color: red;
-    z-index: 2;
-}
-
 .hit {
     background-color: red;
     z-index: 2;
+}
+
+.miss {
+    background-color: white;
 }
 
 .sunk {
@@ -266,6 +311,10 @@ span {
     z-index: 2;
 }
 
-.miss {
-    background-color: white;
+
+/* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*/
+
+#rotate,
+#start {
+    color: rgba(255, 255, 255, .9);
 }
