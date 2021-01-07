@@ -17,13 +17,15 @@ const carrier = document.querySelector('.carrier-container');
 // Select the various buttons and info areas
 const startButton = document.querySelector('#start');
 const rotateButton = document.querySelector('#rotate');
-const turnDisplay = document.querySelector('#whose-go');
+const turnDisplay = document.querySelector('#whoseTurn');
 const infoDisplay = document.querySelector('#info');
 
 // Set variables for horizontal/vertical ships, if the game's over, and current player (always start with the user)
 let isHorizontal = true;
 let isGameOver = false;
 let currentPlayer = 'user';
+
+// const timeoutID = window.setTimeout(function(1, 1000) {});
 
 const width = 10; // Make a 10x10 square grid
 
@@ -252,27 +254,24 @@ function dragEnd() {
 function playGame() {
     if (isGameOver) return;
     if (currentPlayer === 'user') {
+        turnDisplay.classList.add('yourTurn');
+        turnDisplay.classList.remove('aliensTurn');
         turnDisplay.innerHTML = 'Your Turn';
         computerSquares.forEach(square => square.addEventListener('click', function(e) {
             revealSquare(square);
         }))
     }
     if (currentPlayer === 'computer') {
+        turnDisplay.classList.remove('yourTurn');
+        turnDisplay.classList.add('aliensTurn');
         turnDisplay.innerHTML = `Alien's Turn`;
-        // setTimeout(aliensTurn(), 1000);
-        aliensTurn();
+        setTimeout(aliensTurn, 1000);
     }
 }
 
-// checkForStart = function() {
-
-//     infoDisplay.innerHTML = '';
-//     startButton.style.display = 'none';
-//     rotateButton.style.display = 'none';
-//     playGame();
-// }
 
 startButton.addEventListener('click', () => {
+    // Check if user has placed ALL ships before commencing play
     let takenCount = 0;
     userSquares.forEach(square => {
         if (square.classList.contains('taken')) {
@@ -325,7 +324,6 @@ let cpuBattleshipCount = 0;
 let cpuCarrierCount = 0;
 
 function aliensTurn() {
-    setTimeout(1, 1000);
     // Pick a random box for the aliens to shoot
     let random = Math.floor(Math.random() * userSquares.length);
 
@@ -344,6 +342,8 @@ function aliensTurn() {
         if (userSquares[random].classList.contains('carrier')) cpuCarrierCount++;
     } else aliensTurn();
     currentPlayer = 'user';
+    turnDisplay.classList.add('yourTurn');
+    turnDisplay.classList.remove('aliensTurn');
     turnDisplay.innerHTML = 'Your Turn';
 }
 
