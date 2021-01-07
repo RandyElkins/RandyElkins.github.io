@@ -37,9 +37,9 @@
     --hitVertBackground: linear-gradient(to left, white, red);
     --startBtnBackground: green;
     /* fallback for old browsers */
-    --startBtnBackground: -webkit-linear-gradient(to left, white, green);
+    --startBtnBackground: -webkit-linear-gradient(to bottom, black, green);
     /* Chrome 10-25, Safari 5.1-6 */
-    --startBtnBackground: linear-gradient(to left, white, green);
+    --startBtnBackground: linear-gradient(to bottom, black, green);
 }
 
 body {
@@ -148,6 +148,7 @@ span {
 
 .grid div {
     border: 1px dashed rgba(255, 255, 255, .5);
+    box-sizing: border-box;
 }
 
 .grid div:hover {
@@ -333,9 +334,13 @@ span {
 
 /* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*/
 
-#rotate,
+#rotate {
+    color: rgba(255, 255, 255, .9);
+}
+
 #start {
     color: rgba(255, 255, 255, .9);
+    background: var(--startBtnBackground);
 }
 
 #whoseTurn {
