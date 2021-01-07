@@ -25,8 +25,6 @@ let isHorizontal = true;
 let isGameOver = false;
 let currentPlayer = 'user';
 
-// const timeoutID = window.setTimeout(function(1, 1000) {});
-
 const width = 10; // Make a 10x10 square grid
 
 // Create boards
@@ -84,7 +82,7 @@ function generate(ship) {
     let randomDirection = Math.floor(Math.random() * ship.directions.length);
     let current = ship.directions[randomDirection];
     randomDirection === 0 ? direction = 1 : direction = width;
-    let randomStart = Math.abs(Math.floor(Math.random() * width ** 2 - (ship.directions[0].length * direction))); // You may need to add a '1' later. TBD
+    let randomStart = Math.abs(Math.floor(Math.random() * width ** 2 - (ship.directions[0].length * direction)));
 
     const isTaken = current.some(index => computerSquares[randomStart + index].classList.contains('taken'));
     const isAtRightEdge = current.some(index => (randomStart + index) % width === width - 1);
