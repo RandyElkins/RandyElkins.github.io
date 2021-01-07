@@ -35,6 +35,11 @@
     --hitVertBackground: -webkit-linear-gradient(to left, white, red);
     /* Chrome 10-25, Safari 5.1-6 */
     --hitVertBackground: linear-gradient(to left, white, red);
+    --startBtnBackground: green;
+    /* fallback for old browsers */
+    --startBtnBackground: -webkit-linear-gradient(to left, white, green);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --startBtnBackground: linear-gradient(to left, white, green);
 }
 
 body {
@@ -311,10 +316,28 @@ span {
     z-index: 2;
 }
 
+.yourTurn {
+    background: var(--playerBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 10vmin;
+}
+
+.aliensTurn {
+    background: var(--alienBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 10vmin;
+}
+
 
 /* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*/
 
 #rotate,
 #start {
     color: rgba(255, 255, 255, .9);
+}
+
+#whoseTurn {
+    text-align: center;
 }
