@@ -1,3 +1,7 @@
+/* <<<<<<<<<< VARIABLES >>>>>>>>>>*
+/* <<<<<<<<<< VARIABLES >>>>>>>>>>*
+/* <<<<<<<<<< VARIABLES >>>>>>>>>>*/
+
 :root {
     --gradBackground: #2C3E50;
     /* fallback for old browsers */
@@ -15,16 +19,21 @@
     --shipVertBackground: -webkit-linear-gradient(to left, #D7DDE8, #757F9A);
     /* Chrome 10-25, Safari 5.1-6 */
     --shipVertBackground: linear-gradient(to left, #D7DDE8, #757F9A);
-    --playerBackground: green;
+    --userBackground: cyan;
     /* fallback for old browsers */
-    --playerBackground: -webkit-linear-gradient(to bottom, green, black);
+    --userBackground: -webkit-linear-gradient(to bottom, cyan, gray);
     /* Chrome 10-25, Safari 5.1-6 */
-    --playerBackground: linear-gradient(to bottom, green, black);
+    --userBackground: linear-gradient(to bottom, cyan, gray);
+    --winBackground: lime;
+    /* fallback for old browsers */
+    --winBackground: -webkit-linear-gradient(to bottom, lime, gray);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --winBackground: linear-gradient(to bottom, lime, gray);
     --alienBackground: red;
     /* fallback for old browsers */
-    --alienBackground: -webkit-linear-gradient(to bottom, red, black);
+    --alienBackground: -webkit-linear-gradient(to bottom, black, red);
     /* Chrome 10-25, Safari 5.1-6 */
-    --alienBackground: linear-gradient(to bottom, red, black);
+    --alienBackground: linear-gradient(to bottom, black, red);
     --hitBackground: red;
     /* fallback for old browsers */
     --hitBackground: -webkit-linear-gradient(to bottom, white, red);
@@ -41,6 +50,11 @@
     /* Chrome 10-25, Safari 5.1-6 */
     --startBtnBackground: linear-gradient(to bottom, black, green);
 }
+
+
+/* <<<<<<<<<< ELEMENTS >>>>>>>>>>*
+/* <<<<<<<<<< ELEMENTS >>>>>>>>>>*
+/* <<<<<<<<<< ELEMENTS >>>>>>>>>>*/
 
 body {
     display: flex;
@@ -65,10 +79,6 @@ header {
 
 h1 {
     font-size: 7vmin;
-    /* font-size: 5vmin; */
-    /* width: auto;
-    height: auto; */
-    /* align-self: center; */
     text-align: center;
 }
 
@@ -80,12 +90,19 @@ h2 {
 h3 {
     /* font-size: 2em; */
     margin: 0 auto;
-    width: 90vw;
+    width: 100vw;
+}
+
+h4 {
+    font-size: 3vmin;
+    margin: 0 2vmin;
+    width: 100vw;
 }
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     background: var(--shipBackground);
     -webkit-background-clip: text;
     color: transparent;
@@ -99,12 +116,21 @@ span {
 }
 
 
+/* <<<<<<<<<< CLASSES (ALPHABETIC-ish) >>>>>>>>>>*
+/* <<<<<<<<<< CLASSES (ALPHABETIC-ish) >>>>>>>>>>*
 /* <<<<<<<<<< CLASSES (ALPHABETIC-ish) >>>>>>>>>>*/
 
 .alien {
     background: var(--alienBackground);
     -webkit-background-clip: text;
     color: transparent;
+}
+
+.aliensTurn {
+    background: var(--alienBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 10vmin;
 }
 
 .btn-water {
@@ -146,6 +172,16 @@ span {
     grid-template-columns: repeat(10, 4.6vmin);
 }
 
+.grid-user.active div {
+    border: 1px dashed rgba(255, 0, 0, .5);
+    box-sizing: border-box;
+}
+
+.grid-computer.active div {
+    border: 1px dashed rgba(191, 255, 0, 0.5);
+    box-sizing: border-box;
+}
+
 .grid div {
     border: 1px dashed rgba(255, 255, 255, .5);
     box-sizing: border-box;
@@ -169,7 +205,7 @@ span {
 }
 
 .grid-computer>.hit {
-    background-color: red;
+    background-color: pink;
     z-index: 2;
 }
 
@@ -178,8 +214,14 @@ span {
     align-items: center;
 }
 
+.hit.sunk {
+    background-color: red;
+    text-align: center;
+    z-index: 0;
+}
+
 .player {
-    background: var(--playerBackground);
+    background: var(--userBackground);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -304,7 +346,7 @@ span {
 }
 
 .hit {
-    background-color: red;
+    background-color: pink;
     z-index: 2;
 }
 
@@ -318,20 +360,31 @@ span {
 }
 
 .yourTurn {
-    background: var(--playerBackground);
+    background: var(--userBackground);
     -webkit-background-clip: text;
     color: transparent;
     font-size: 10vmin;
 }
 
-.aliensTurn {
+.win {
+    font-size: 10vmin;
+    background: var(--winBackground);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: center;
+}
+
+.lost {
+    font-size: 10vmin;
     background: var(--alienBackground);
     -webkit-background-clip: text;
     color: transparent;
-    font-size: 10vmin;
+    text-align: center;
 }
 
 
+/* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*
+/* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*
 /* <<<<<<<<<<<<<<< IDs >>>>>>>>>>>>>>>*/
 
 #rotate {

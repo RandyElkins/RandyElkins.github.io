@@ -1,4 +1,5 @@
 // Select the various grids
+// const $userGrid = $('.grid-user');
 const userGrid = document.querySelector('.grid-user');
 const computerGrid = document.querySelector('.grid-computer');
 const displayGrid = document.querySelector('.grid-display');
@@ -13,10 +14,12 @@ const submarine = document.querySelector('.submarine-container');
 const cruiser = document.querySelector('.cruiser-container');
 const battleship = document.querySelector('.battleship-container');
 const carrier = document.querySelector('.carrier-container');
+const shipType = ['destroyer', 'submarine', 'cruiser', 'battleship', 'carrier'];
 
 // Select the various buttons and info areas
 const startButton = document.querySelector('#start');
-const rotateButton = document.querySelector('#rotate');
+const $rotateButton = $('#rotate');
+// const rotateButton = document.querySelector('#rotate');
 const turnDisplay = document.querySelector('#whoseTurn');
 const infoDisplay = document.querySelector('#info');
 
@@ -115,7 +118,9 @@ function rotate() {
 
     isHorizontal ? isHorizontal = false : isHorizontal = true;
 }
-rotateButton.addEventListener('click', rotate);
+
+$rotateButton.on('click', rotate);
+// rotateButton.addEventListener('click', rotate);
 
 // Drag/drop user ships
 ships.forEach(ship => ship.addEventListener('dragstart', dragStart));
@@ -252,6 +257,8 @@ function dragEnd() {
 function playGame() {
     if (isGameOver) return;
     if (currentPlayer === 'user') {
+        computerGrid.classList.add('active');
+        userGrid.classList.remove('active');
         turnDisplay.classList.add('yourTurn');
         turnDisplay.classList.remove('aliensTurn');
         turnDisplay.innerHTML = 'Your Turn';
@@ -260,6 +267,8 @@ function playGame() {
         }))
     }
     if (currentPlayer === 'computer') {
+        computerGrid.classList.remove('active');
+        userGrid.classList.add('active');
         turnDisplay.classList.remove('yourTurn');
         turnDisplay.classList.add('aliensTurn');
         turnDisplay.innerHTML = `Alien's Turn`;
@@ -282,7 +291,8 @@ startButton.addEventListener('click', () => {
     }
     infoDisplay.innerHTML = '';
     startButton.style.display = 'none';
-    rotateButton.style.display = 'none';
+    $rotateButton.css('display', 'none');
+    // rotateButton.style.display = 'none';
     playGame();
 });
 
@@ -307,10 +317,11 @@ function revealSquare(square) {
     }
     if (square.classList.contains('taken')) {
         square.classList.add('hit');
+        checkForWins(square);
     } else {
         square.classList.add('miss');
     };
-    checkForWins();
+    // checkForWins();
     currentPlayer = 'computer';
     playGame();
 }
@@ -329,6 +340,7 @@ function aliensTurn() {
     if (!userSquares[random].classList.contains('shot')) {
         if (userSquares[random].classList.contains('taken')) {
             userSquares[random].classList.add('hit', 'shot');
+            checkForWins(userSquares[random]);
         } else {
             userSquares[random].classList.add('miss', 'shot');
         };
@@ -339,59 +351,111 @@ function aliensTurn() {
         if (userSquares[random].classList.contains('battleship')) cpuBattleshipCount++;
         if (userSquares[random].classList.contains('carrier')) cpuCarrierCount++;
     } else aliensTurn();
+    // checkForWins();
     currentPlayer = 'user';
+    computerGrid.classList.add('active');
+    userGrid.classList.remove('active');
     turnDisplay.classList.add('yourTurn');
     turnDisplay.classList.remove('aliensTurn');
     turnDisplay.innerHTML = 'Your Turn';
 }
 
-function checkForWins() {
+function checkForWins(square) {
     if (destroyerCount === 2) {
+        infoDisplay.classList.remove('lost');
+        infoDisplay.classList.add('win');
         infoDisplay.innerHTML = "You sunk the alien's destroyer.";
         destroyerCount = 10;
+        const cpuDestroyer = document.querySelectorAll('.destroyer.hit');
+        cpuDestroyer.forEach(ship => {
+            ship.classList.add('sunk');
+            ship.innerText = "X";
+        });
     }
     if (submarineCount === 3) {
+        infoDisplay.classList.remove('lost');
+        infoDisplay.classList.add('win');
         infoDisplay.innerHTML = "You sunk the alien's submarine.";
         submarineCount = 10;
+        const cpuSubmarine = document.querySelectorAll('.submarine.hit');
+        cpuSubmarine.forEach(ship => {
+            ship.classList.add('sunk');
+            ship.innerText = "X";
+        });
     }
     if (cruiserCount === 3) {
+        infoDisplay.classList.remove('lost');
+        infoDisplay.classList.add('win');
         infoDisplay.innerHTML = "You sunk the alien's cruiser.";
         cruiserCount = 10;
+        const cpuCruiser = document.querySelectorAll('.cruiser.hit');
+        cpuCruiser.forEach(ship => {
+            ship.classList.add('sunk');
+            ship.innerText = "X";
+        });
     }
     if (battleshipCount === 4) {
+        infoDisplay.classList.remove('lost');
+        infoDisplay.classList.add('win');
         infoDisplay.innerHTML = "You sunk the alien's battleship.";
         battleshipCount = 10;
+        const cpuBattleship = document.querySelectorAll('.battleship.hit');
+        cpuBattleship.forEach(ship => {
+            ship.classList.add('sunk');
+            ship.innerText = "X";
+        });
     }
     if (carrierCount === 5) {
+        infoDisplay.classList.remove('lost');
+        infoDisplay.classList.add('win');
         infoDisplay.innerHTML = "You sunk the alien's carrier.";
         carrierCount = 10;
+        const cpuCarrier = document.querySelectorAll('.carrier.hit');
+        cpuCarrier.forEach(ship => {
+            ship.classList.add('sunk');
+            ship.innerText = "X";
+        });
     }
     if (cpuDestroyerCount === 2) {
+        infoDisplay.classList.remove('win');
+        infoDisplay.classList.add('lost');
         infoDisplay.innerHTML = "The alien's sunk your destroyer.";
         cpuDestroyerCount = 10;
     }
     if (cpuSubmarineCount === 3) {
+        infoDisplay.classList.remove('win');
+        infoDisplay.classList.add('lost');
         infoDisplay.innerHTML = "The alien's sunk your submarine.";
         cpuSubmarineCount = 10;
     }
     if (cpuCruiserCount === 3) {
+        infoDisplay.classList.remove('win');
+        infoDisplay.classList.add('lost');
         infoDisplay.innerHTML = "The alien's sunk your cruiser.";
         cpuCruiserCount = 10;
     }
     if (cpuBattleshipCount === 4) {
+        infoDisplay.classList.remove('win');
+        infoDisplay.classList.add('lost');
         infoDisplay.innerHTML = "The alien's sunk your battleship.";
         cpuBattleshipCount = 10;
     }
     if (cpuCarrierCount === 5) {
+        infoDisplay.classList.remove('win');
+        infoDisplay.classList.add('lost');
         infoDisplay.innerHTML = "The alien's sunk your carrier.";
         cpuCarrierCount = 10;
     }
     if (destroyerCount + submarineCount + cruiserCount + battleshipCount + carrierCount === 50) {
-        infoDisplay.innerHTML = 'CONGRATULATIONS, YOU WON!';
+        infoDisplay.style.visibility = 'hidden';
+        turnDisplay.classList.add('win');
+        turnDisplay.innerHTML = 'CONGRATULATIONS, YOU WON!';
         gameOver();
     }
     if (cpuDestroyerCount + cpuSubmarineCount + cpuCruiserCount + cpuBattleshipCount + cpuCarrierCount === 50) {
-        infoDisplay.innerHTML = 'Bummer, the aliens won!';
+        infoDisplay.style.visibility = 'hidden';
+        turnDisplay.classList.add('lost');
+        turnDisplay.innerHTML = 'Bummer, the aliens won!';
         gameOver();
     }
 }
@@ -399,4 +463,7 @@ function checkForWins() {
 function gameOver() {
     isGameOver = true;
     startButton.removeEventListener('click', playGame);
+    computerSquares.forEach(square => square.removeEventListener('click', function(e) {
+        revealSquare(square);
+    }))
 }
