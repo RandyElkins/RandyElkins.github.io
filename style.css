@@ -84,7 +84,7 @@ h1 {
 
 h2 {
     font-size: 4vmin;
-    margin: 2vmin;
+    margin: 0 2vmin;
 }
 
 h3 {
@@ -148,7 +148,7 @@ span {
 }
 
 .container ol {
-    width: 100%;
+    width: 90vw;
 }
 
 .end {
@@ -215,8 +215,10 @@ span {
 }
 
 .hit.sunk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: red;
-    text-align: center;
     z-index: 0;
 }
 
