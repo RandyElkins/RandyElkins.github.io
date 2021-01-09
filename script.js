@@ -1,5 +1,4 @@
 // Select the various grids
-// const $userGrid = $('.grid-user');
 const userGrid = document.querySelector('.grid-user');
 const computerGrid = document.querySelector('.grid-computer');
 const displayGrid = document.querySelector('.grid-display');
@@ -19,9 +18,9 @@ const shipType = ['destroyer', 'submarine', 'cruiser', 'battleship', 'carrier'];
 // Select the various buttons and info areas
 const startButton = document.querySelector('#start');
 const $rotateButton = $('#rotate');
-// const rotateButton = document.querySelector('#rotate');
 const turnDisplay = document.querySelector('#whoseTurn');
 const infoDisplay = document.querySelector('#info');
+const $hiddenMsgs = $('h2.fleetTitle');
 
 // Set variables for horizontal/vertical ships, if the game's over, and current player (always start with the user)
 let isHorizontal = true;
@@ -120,7 +119,6 @@ function rotate() {
 }
 
 $rotateButton.on('click', rotate);
-// rotateButton.addEventListener('click', rotate);
 
 // Drag/drop user ships
 ships.forEach(ship => ship.addEventListener('dragstart', dragStart));
@@ -148,8 +146,7 @@ ships.forEach(ship => ship.addEventListener('mousedown', (e) => {
     selectedShipGrabbedIndex = parseInt(selectedShipNameWithIndex.substr(-1));
 
     selectedShipLastIndex = parseInt(e.target.parentNode.lastChild.previousSibling.id.substr(-1));
-    // selectedShipLastIndex = parseInt(e.target.parentNode.lastChild.previousSibling.dataset.id).substr(-1);
-    // selectedShipLastIndex = parseInt(selectedShipNameWithIndex.substr(-1));
+
     isHorizontal ? selectedShipLastIndex : selectedShipLastIndex = 10 * selectedShipLastIndex;
     isHorizontal ? selectedShipGrabbedIndex : selectedShipGrabbedIndex = 10 * selectedShipGrabbedIndex;
 }))
@@ -289,6 +286,11 @@ startButton.addEventListener('click', () => {
         alert('Please position your entire fleet before starting the operation.')
         return;
     }
+
+    for (let i = 0; i < $hiddenMsgs.length; i++) {
+        $hiddenMsgs[i].removeAttr('hidden');
+    }
+
     infoDisplay.innerHTML = '';
     startButton.style.display = 'none';
     $rotateButton.css('display', 'none');
