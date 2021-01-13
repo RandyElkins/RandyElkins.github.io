@@ -401,3 +401,10 @@ span {
 #whoseTurn {
     text-align: center;
 }
+
+.hidden {
+    /* background: var(--gradBackground);
+    -webkit-background-clip: text; */
+    background: rgba(150, 150, 150, 0);
+    color: rgba(150, 150, 150, 0);
+}

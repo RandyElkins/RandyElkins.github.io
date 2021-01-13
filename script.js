@@ -20,7 +20,7 @@ const startButton = document.querySelector('#start');
 const $rotateButton = $('#rotate');
 const turnDisplay = document.querySelector('#whoseTurn');
 const infoDisplay = document.querySelector('#info');
-const $hiddenMsgs = $('h2.fleetTitle');
+const $hiddenMsgs = $('h4.fleetTitle');
 
 // Set variables for horizontal/vertical ships, if the game's over, and current player (always start with the user)
 let isHorizontal = true;
@@ -256,6 +256,8 @@ function playGame() {
     if (currentPlayer === 'user') {
         computerGrid.classList.add('active');
         userGrid.classList.remove('active');
+        $hiddenMsgs.first().addClass('hidden');
+        $hiddenMsgs.last().removeClass('hidden');
         turnDisplay.classList.add('yourTurn');
         turnDisplay.classList.remove('aliensTurn');
         turnDisplay.innerHTML = 'Your Turn';
@@ -266,6 +268,8 @@ function playGame() {
     if (currentPlayer === 'computer') {
         computerGrid.classList.remove('active');
         userGrid.classList.add('active');
+        $hiddenMsgs.first().removeClass('hidden');
+        $hiddenMsgs.last().addClass('hidden');
         turnDisplay.classList.remove('yourTurn');
         turnDisplay.classList.add('aliensTurn');
         turnDisplay.innerHTML = `Alien's Turn`;
@@ -287,9 +291,9 @@ startButton.addEventListener('click', () => {
         return;
     }
 
-    for (let i = 0; i < $hiddenMsgs.length; i++) {
-        $hiddenMsgs[i].removeAttr('hidden');
-    }
+    // for (let i = 0; i < $hiddenMsgs.length; i++) {
+    //     $hiddenMsgs[i].removeAttr('hidden');
+    // }
 
     infoDisplay.innerHTML = '';
     startButton.style.display = 'none';
@@ -357,6 +361,8 @@ function aliensTurn() {
     currentPlayer = 'user';
     computerGrid.classList.add('active');
     userGrid.classList.remove('active');
+    $hiddenMsgs.first().addClass('hidden');
+    $hiddenMsgs.last().removeClass('hidden');
     turnDisplay.classList.add('yourTurn');
     turnDisplay.classList.remove('aliensTurn');
     turnDisplay.innerHTML = 'Your Turn';
